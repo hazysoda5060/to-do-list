@@ -1,4 +1,4 @@
-let inputVal = ''
+var inputVal = ''
 
 document.querySelector('#item').addEventListener('change', function(event){
     inputVal = event.target.value
@@ -11,7 +11,11 @@ function addTodo(event){
     event.stopPropagation()
     const item = document.createAttribute('li')
     item.innerText = inputVal
-    console.log(item.innerText)
+
+    const button = document.createElement('button')
+    button.innerText = 'x'
+    button.addEventListener('click', removeTodo)
+    item.appendChild(button)
 
     const list = document.querySelector('ul')
     list.appendChild(item)
@@ -19,4 +23,8 @@ function addTodo(event){
     //reset input
     document.querySelector('#item').value = ''
     inputVal = ''
+}
+
+function removeTodo(event){
+    event.target.parentNode.remove()
 }
